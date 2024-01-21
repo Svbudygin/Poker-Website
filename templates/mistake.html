@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% block style %}
+    <style>
+        .error-container {
+            text-align: center;
+        }
+        .error-image {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+    <title>{% block title %}404 - Страница не найдена {% endblock %}</title>
+{% endblock %}
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+<style>
+    .login-page-main {
+        background-color: #ffffff;
+        padding: 50px 0;
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+
+
+    label {
+        font-weight: bold;
+    }
+
+</style>
+<div class="login-page-main">
+    <div class="container">
+        <div class="row">
+    <div class="error-container">
+        <h1>404 - Страница не найдена</h1>
+        <img class="error-image" src="static/data/mist.jpg" alt="Ошибка 404">
+    </div><br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br></div></div></div>
+{% endblock %}

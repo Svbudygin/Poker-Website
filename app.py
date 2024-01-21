@@ -16,6 +16,9 @@ admins = {1, "1"}
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg'}
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('mistake.html'), 404
 
 @app.route('/lk', methods=['GET', 'POST'])
 def lk():
@@ -23,6 +26,8 @@ def lk():
     coloradmin = False
     if bool(loginin):
         coloradmin = bool(session.get('user_id') in admins)
+        if coloradmin:
+            return redirect(url_for('games'))
     else:
         return redirect(url_for('games'))
 
@@ -370,9 +375,9 @@ def nextgame():
         return redirect(url_for('nextgame'))
     user_ids, remains = players_for_next_game(playerid)
     status, lst_players = get_status_lst_players(loginin, user_ids=user_ids)
-
+    butmclick = not any(i[0] == loginin for i in lst_players)
     return render_template('nextgame.html', players=lst_players, loginin=bool(loginin), status=status, playerid=loginin,
-                           coloradmin=coloradmin, remains=remains)
+                           coloradmin=coloradmin, remains=remains, butmclick=butmclick)
 
 
 @app.route('/team')

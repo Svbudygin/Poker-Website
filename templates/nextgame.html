@@ -680,6 +680,7 @@
                  data-field-top-res-640-value="25" data-field-left-res-640-value="390" data-field-top-res-960-value="0"
                  data-field-left-res-960-value="710" data-field-width-res-960-value="390">
                 {%if loginin and not coloradmin%}
+                {% if butmclick %}
                 {% if (status and status.lower() == 'member' or status.lower() == 'vip' ) and remains > 0 %}
                 <form id="brandForm2" method="GET" action="{{url_for('nextgame')}}">
                     <input type="hidden" name="player" value="{{playerid}}">
@@ -692,6 +693,7 @@
                     </button>
 
                 </form>
+                {% endif %}
                 {% endif %}
                 {% endif %}
             </div>
@@ -807,5 +809,27 @@
             <br><br>
             <br>
             <br><br>
+            <br><br><br>
+            <br><br>
+            <br>
+            <br><br>
+            <br><br><br>
+            <br><br>
+            <br>
+            <br><br>
+            <br><br><br>
+            <br><br>
+            <br>
+            <br><br><br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <br><br>
+    <br>
+
             <br><br>
 {% endblock %}
