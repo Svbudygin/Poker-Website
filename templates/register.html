@@ -69,7 +69,8 @@
         <div class="row">
             <div class=" ol-xs-12 col-md-12">
                 <div class="login-box">
-                    <form action="{{url_for('register')}}" method="post" enctype="multipart/form-data">
+                    <form id="emailForm" action="{{url_for('register')}}" method="post" enctype="multipart/form-data">
+
 
                         <div class="form-group">
                             <label for="fullname">Full Name:</label>
@@ -107,26 +108,29 @@
                                     agree to the terms and conditions</label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" onclick="showCodeForm()">Submit</button>
                     </form>
-                    <script>document.getElementById('password1').addEventListener('input', validatePassword);
-                    document.getElementById('password2').addEventListener('input', validatePassword);
-
-                    function validatePassword() {
-                        var password1 = document.getElementById('password1').value;
-                        var password2 = document.getElementById('password2').value;
-
-                        if (password1 !== password2) {
-                            document.getElementById('password2').setCustomValidity('Passwords do not match');
-                        } else {
-                            document.getElementById('password2').setCustomValidity('');
-                        }
-                    }</script>
                 </div>
+
+                <script>document.getElementById('password1').addEventListener('input', validatePassword);
+                document.getElementById('password2').addEventListener('input', validatePassword);
+
+                function validatePassword() {
+                    var password1 = document.getElementById('password1').value;
+                    var password2 = document.getElementById('password2').value;
+
+                    if (password1 !== password2) {
+                        document.getElementById('password2').setCustomValidity('Passwords do not match');
+                    } else {
+                        document.getElementById('password2').setCustomValidity('');
+                    }
+                }</script>
             </div>
+
+
         </div>
     </div>
-<br>
+    <br>
     <br>
     <br>
     <br>
@@ -174,5 +178,6 @@
     <br>
 
 </div>
+
 
 {% endblock %}

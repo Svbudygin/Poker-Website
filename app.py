@@ -2,8 +2,12 @@ import re
 import secrets
 import sqlite3
 from datetime import datetime
+from random import randint
+from time import sleep
 
 from flask import Flask, request, render_template, url_for, session, redirect
+
+from mailsender import send_email
 
 import os
 from werkzeug.utils import secure_filename
@@ -13,12 +17,15 @@ app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
 # app.config['SERVER_NAME'] = '127.0.0.1:8080'
 admins = {1, "1"}
+app.config['UPLOAD_FOLDER_NOT_USERS'] = 'static/uploadsnotusers'
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg'}
+
 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('mistake.html'), 404
+
 
 @app.route('/lk', methods=['GET', 'POST'])
 def lk():
@@ -90,6 +97,138 @@ def register():
     if request.method == "POST":
         fullname = request.form['fullname']
         phone = request.form['phone']
+        # try:
+        #     if int(phone) and len(phone) != 11:
+        #         raise Exception
+        # except:
+        #     return render_template('register.html', background=True, loginin=False)
+        email = request.form['email']
+        password1 = request.form['password1']
+        if not os.path.exists("data"):
+            os.mkdir("data")
+        conn = sqlite3.connect("data/users.sql")
+        cursor = conn.cursor()
+        cursor.execute(
+            'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, fullname VARCHAR(200), phone VARCHAR(200), email VARCHAR(200), password VARCHAR(200),status VARCHAR(200) )')
+
+        cursor.execute('SELECT phone, email, id FROM users ')
+        users = cursor.fetchone()
+        conn.commit()
+        cursor.close()
+        conn.close()
+        if users:
+            users_phone, users_email, id = users
+            if phone in users_phone or email in users_email:
+                return redirect(url_for('login'))
+        conn = sqlite3.connect("data/notusers.sql")
+        cursor = conn.cursor()
+        cursor.execute(
+            'CREATE TABLE IF NOT EXISTS notusers (id INTEGER PRIMARY KEY AUTOINCREMENT, fullname VARCHAR(200), phone VARCHAR(200), email VARCHAR(200), password VARCHAR(200),filename VARCHAR(200), code VARCHAR(200) )')
+
+        hashed_password = generate_password_hash(password1.strip())
+        code = randint(100_000, 100_000_0 - 1)
+        print("code randint:", code)
+        send_email(email, code)
+        file = request.files.get('profilepic')
+        filename = None
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            folder = app.config['UPLOAD_FOLDER_NOT_USERS']
+            if not os.path.exists(folder):
+                os.mkdir(folder)
+            file.save(os.path.join(folder, filename))
+
+        cursor.execute(
+            f'INSERT OR REPLACE INTO notusers (fullname, phone, email, password, filename, code) VALUES (?,?, ?, ?, ?,?)',
+            (fullname, phone, email, hashed_password, filename, code))
+        cursor.execute('SELECT id FROM notusers WHERE email=? ', (email,))
+        user_id = cursor.fetchone()
+        conn.commit()
+        cursor.close()
+        conn.close()
+        if user_id:
+            session['notuser_id'] = user_id[0]
+
+        return redirect(url_for('register2'))
+    return render_template('register.html', background=True, loginin=False)
+
+
+def process_file(input_path, output_folder, new_filename):
+    # Открываем файл
+    with open(input_path, 'rb') as file:
+        data = file.read()
+
+    # Сохраняем файл в другом месте
+    with open(os.path.join(output_folder, new_filename), 'wb') as new_file:
+        new_file.write(data)
+
+    # Удаляем исходный файл
+    os.remove(input_path)
+
+
+@app.route('/register2', methods=['GET', 'POST'])
+def register2():
+    if not session.get('notuser_id'):
+        return redirect(url_for('games'))
+    if request.method == "POST":
+        inputcode = request.form['code']
+        notuserid = session.get('notuser_id')
+        conn1 = sqlite3.connect("data/notusers.sql")
+        cursor1 = conn1.cursor()
+        cursor1.execute(
+            'CREATE TABLE IF NOT EXISTS notusers (id INTEGER PRIMARY KEY AUTOINCREMENT, fullname VARCHAR(200), phone VARCHAR(200), email VARCHAR(200), password VARCHAR(200),filename VARCHAR(200) )')
+
+        cursor1.execute('SELECT fullname, phone, email, password, filename, code FROM notusers WHERE id=?', (notuserid,))
+        all_user = cursor1.fetchone()
+        folder = app.config['UPLOAD_FOLDER_NOT_USERS']
+        if all_user:
+            fullname, phone, email, hashed_password, filename, code = all_user
+            print("code input:", code," - ", inputcode)
+            if str(inputcode) != str(code):
+                cursor1.close()
+                conn1.close()
+                return redirect(url_for('register2'))
+            cursor1.execute(f"DELETE FROM notusers WHERE id = ?", (notuserid,))
+            conn1.commit()
+            cursor1.close()
+            conn1.close()
+            conn = sqlite3.connect("data/users.sql")
+            cursor = conn.cursor()
+            cursor.execute(
+                'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, fullname VARCHAR(200), phone VARCHAR(200), email VARCHAR(200), password VARCHAR(200),status VARCHAR(200) )')
+
+            cursor.execute('SELECT phone, email, id FROM users ')
+            users = cursor.fetchone()
+            if users:
+                users_phone, users_email, id = users
+                if phone in users_phone or email in users_email:
+                    conn.commit()
+                    cursor.close()
+                    conn.close()
+                    return redirect(url_for('login'))
+
+            cursor.execute(
+                f'INSERT OR REPLACE INTO users (fullname, phone, email, password, status) VALUES (?,?, ?, ?, ?)',
+                (fullname, phone, email, hashed_password, "Guest"))
+            cursor.execute('SELECT id FROM users WHERE email=? ', (email,))
+            user_id = cursor.fetchone()
+            session['user_id'] = user_id
+            process_file(folder + "/" + filename, app.config['UPLOAD_FOLDER'], str(user_id[0]) + ".png")
+            conn.commit()
+            cursor.close()
+            conn.close()
+        else:
+            cursor1.close()
+            conn1.close()
+        return redirect(url_for('games'))
+    return render_template('register2.html', background=True, loginin=False)
+
+
+@app.route('/register82', methods=['GET', 'POST'])
+def register9():
+    if request.method == "POST":
+        fullname = request.form['fullname']
+        phone = request.form['phone']
         try:
             if int(phone) and len(phone) != 11:
                 raise Exception
@@ -114,7 +253,8 @@ def register():
                 conn.close()
                 return redirect(url_for('login'))
         hashed_password = generate_password_hash(password1.strip())
-
+        send_email(email)
+        sleep(120)
         cursor.execute(f'INSERT OR REPLACE INTO users (fullname, phone, email, password, status) VALUES (?,?, ?, ?, ?)',
                        (fullname, phone, email, hashed_password, "Guest"))
         cursor.execute('SELECT id FROM users WHERE email=? ', (email,))
