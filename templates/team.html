@@ -1,0 +1,296 @@
+{% extends 'base.html' %}
+{% block body %}
+<!--    "name for block peple"-->
+
+<div id="rec170857179" class="r t-rec t-rec_pt_60 t-rec_pb_15"
+
+     style="padding-top:60px;padding-bottom:15px;background-color: #f75e5e; "
+     data-record-type="795">
+    <br>
+    <!-- T795 -->
+    <div class="t795">
+        <div class="t-container t-align_left">
+            <div class="t-col t-col_12 ">
+                <div class="t795__title t-title t-title_xs" field="title">
+                    <br/>
+                    Members
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--    "peple"-->
+<div id="rec170857335" class="r t-rec t-rec_pt_0 t-rec_pb_60"
+     style="padding-top:0px;padding-bottom:60px; background-color: #f75e5e; "
+     data-record-type="526">
+    <br>
+
+    {% if coloradmin %}
+    <ul role="list" class="t526__container t-list__container_inrow3 t-container">
+        {% for dict_users in list_all_members %}
+        <li class="t526__col t-col t-col_4 t-list__item t-align_left t526__col-mobstyle">
+            <div class="t526__itemwrapper t526__itemwrapper_3">
+                <div class="t526__imgwrapper " style="width:200px;" itemscope
+                     itemtype="http://schema.org/ImageObject">
+                    <meta itemprop="image"
+                          content="static/uploads/{{dict_users.get('user_id')}}.png">
+                    <div class="t526__bgimg t526__img_circle t-bgimg"
+                         data-original="static/uploads/{{dict_users.get('user_id')}}.png"
+                         bgimgfield="li_img__1478015651388"
+                         style="background-image: url('static/data/panda.svg');"></div>
+                </div>
+                <div class="t526__wrapperleft">
+                    <div class="t526__persname t-name t-name_lg t526__bottommargin_sm"
+                         field="li_persname__1478015651388">{{dict_users.get("fullname")}}
+                    </div>
+                    <div class="t526__persdescr t-descr t-descr_xxs t526__bottommargin_lg"
+                         field="li_persdescr__1478015651388">{{dict_users.get("status")}}
+                    </div>
+                </div>
+                {% if dict_users.get("status").lower() != 'vip' %}
+                <form id="brandForm11" method="GET" action="{{url_for('team')}}">
+                    <input type="hidden" name="status" value="Vip">
+                    <input type="hidden" name="userid" value="{{dict_users.get('user_id')}}">
+
+                    <button type="submit"
+                            style="background-color: #5ef763; color: #2d4250; font-weight: 600; border-radius: 20px; padding: 10px 20px; display: inline-block; text-align: center; text-decoration: none;">
+                        Vip
+                    </button>
+                </form>
+                {% elif dict_users.get("status").lower() != 'member' %}
+                <form id="brandForm21" method="GET" action="{{url_for('team')}}">
+                    <input type="hidden" name="status" value="Member">
+                    <input type="hidden" name="userid" value="{{dict_users.get('user_id')}}">
+
+                    <button type="submit"
+                            style="background-color: #fcfa53; color: #2d4250; font-weight: 600; border-radius: 20px; padding: 10px 20px; display: inline-block; text-align: center; text-decoration: none;">
+                        Member
+                    </button>
+                    {% endif %}
+                </form>
+                <form id="brandForm31" method="GET" action="{{url_for('team')}}">
+                    <input type="hidden" name="status" value="Delete">
+                    <input type="hidden" name="userid" value="{{dict_users.get('user_id')}}">
+
+                    <button type="submit"
+                            style="background-color: #fa2323; color: #2d4250; font-weight: 600; border-radius: 20px; padding: 10px 20px; display: inline-block; text-align: center; text-decoration: none;">
+                        Delete
+                    </button>
+                </form>
+            </div>
+        </li>
+
+        {% endfor %}
+    </ul>
+    <div class="t795">
+        <div class="t-container t-align_left">
+            <div class="t-col t-col_12 ">
+                <div class="t795__title t-title t-title_xs" field="title">
+                    <br/>
+                    Guests
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul role="list" class="t526__container t-list__container_inrow3 t-container">
+        {% for dict_users in list_all_guests %}
+        <li class="t526__col t-col t-col_4 t-list__item t-align_left t526__col-mobstyle">
+            <div class="t526__itemwrapper t526__itemwrapper_3">
+                <div class="t526__imgwrapper " style="width:200px;" itemscope
+                     itemtype="http://schema.org/ImageObject">
+                    <meta itemprop="image"
+                          content="static/uploads/{{dict_users.get('user_id')}}.png">
+                    <div class="t526__bgimg t526__img_circle t-bgimg"
+                         data-original="static/uploads/{{dict_users.get('user_id')}}.png"
+                         bgimgfield="li_img__1478015651388"
+                         style="background-image: url('static/data/panda.svg');"></div>
+                </div>
+                <div class="t526__wrapperleft">
+                    <div class="t526__persname t-name t-name_lg t526__bottommargin_sm"
+                         field="li_persname__1478015651388">{{dict_users.get("fullname")}}
+                    </div>
+                    <!--                    <div class="t526__persdescr t-descr t-descr_xxs t526__bottommargin_lg"-->
+                    <!--                         field="li_persdescr__1478015651388">{{dict_users.get("status")}}-->
+                    <!--                    </div>-->
+                </div>
+                <!--                        -->
+                <form id="brandForm1" method="GET" action="{{url_for('team')}}">
+                    <input type="hidden" name="status" value="Vip">
+                    <input type="hidden" name="userid" value="{{dict_users.get('user_id')}}">
+
+                    <button type="submit"
+                            style="background-color: #5ef763; color: #2d4250; font-weight: 600; border-radius: 20px; padding: 10px 20px; display: inline-block; text-align: center; text-decoration: none;">
+                        Vip
+                    </button>
+                </form>
+                <!--                        -->
+                <form id="brandForm2" method="GET" action="{{url_for('team')}}">
+                    <input type="hidden" name="status" value="Member">
+                    <input type="hidden" name="userid" value="{{dict_users.get('user_id')}}">
+
+                    <button type="submit"
+                            style="background-color: #fcfa53; color: #2d4250; font-weight: 600; border-radius: 20px; padding: 10px 20px; display: inline-block; text-align: center; text-decoration: none;">
+                        Member
+                    </button>
+
+                </form>
+                <form id="brandForm3" method="GET" action="{{url_for('team')}}">
+                    <input type="hidden" name="status" value="Delete">
+                    <input type="hidden" name="userid" value="{{dict_users.get('user_id')}}">
+
+                    <button type="submit"
+                            style="background-color: #fa2323; color: #2d4250; font-weight: 600; border-radius: 20px; padding: 10px 20px; display: inline-block; text-align: center; text-decoration: none;">
+                        Delete
+                    </button>
+                </form>
+            </div>
+        </li>
+
+        {% endfor %}
+    </ul>
+    {% else %}
+    <ul role="list" class="t526__container t-list__container_inrow3 t-container">
+        {% for dict_users in list_all_members %}
+        <li class="t526__col t-col t-col_4 t-list__item t-align_left t526__col-mobstyle">
+            <div class="t526__itemwrapper t526__itemwrapper_3">
+                <div class="t526__imgwrapper " style="width:200px;" itemscope
+                     itemtype="http://schema.org/ImageObject">
+                    <meta itemprop="image"
+                          content="static/uploads/{{dict_users.get('user_id')}}.png">
+                    <div class="t526__bgimg t526__img_circle t-bgimg"
+                         data-original="static/uploads/{{dict_users.get('user_id')}}.png"
+                         bgimgfield="li_img__1478015651388"
+                         style="background-image: url('static/data/panda.svg');"></div>
+                </div>
+                <div class="t526__wrapperleft">
+                    <div class="t526__persname t-name t-name_lg t526__bottommargin_sm"
+                         field="li_persname__1478015651388">{{dict_users.get("fullname")}}
+                    </div>
+                </div>
+                {% if dict_users.get("status").lower() == 'vip' %}
+                <div class="t228__list_item" style="padding: 0 1px;">
+                    <a class="t-menu__link-item" data-menu-submenu-hook=""
+                       data-menu-item-number="4"
+                       style="background-color: #5ef763; color: #2d4250; font-weight: 600; border-radius: 20px; padding: 10px 20px; display: inline-block; text-align: center; text-decoration: none;">Vip</a>
+                </div>
+                {% elif dict_users.get("status").lower() == 'member' %}
+                <div class="t228__list_item" style="padding: 0 1px;">
+                    <a class="t-menu__link-item" data-menu-submenu-hook=""
+                       data-menu-item-number="4"
+                       style="background-color: #fcfa53; color: #2d4250; font-weight: 600; border-radius: 20px; padding: 10px 20px; display: inline-block; text-align: center; text-decoration: none;">Member</a>
+                </div>
+
+                {% endif %}
+
+            </div>
+        </li>
+
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+
+
+<style>
+    .t-persons-social-links {
+        line-height: 0px;
+    }
+
+    .t-persons-social-links__wrapper {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        width: auto;
+    }
+
+    .t-persons-social-links {
+        margin-top: 15px;
+    }
+
+    .t-persons-social-links__item {
+        padding: 0px 4px;
+    }
+
+    .t-persons-social-links__item svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .t-persons-social-links__wrapper_round .t-persons-social-links__item svg {
+        width: 23px;
+        height: 23px;
+    }
+
+    .t-persons-social-links__item:first-child {
+        padding-left: 0px;
+    }
+
+    @media screen and (max-width: 960px) {
+        .t-persons-social-links__item {
+            margin-bottom: 3px;
+        }
+    }
+
+    @media screen and (max-width: 640px) {
+        .t-persons-social-links {
+            margin-top: 13px;
+        }
+
+        .t-persons-social-links__item {
+            padding: 0px 3px;
+        }
+
+        .t-persons-social-links__item svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        .t-persons-social-links__wrapper_round .t-persons-social-links__item svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+</style>
+<style>
+    #rec170857335 .t526__persname {
+        font-size: 24px;
+    }
+
+    #rec170857335 .t526__persdescr {
+        font-size: 18px;
+        color: #212836;
+        font-weight: 400;
+    }
+
+    #rec170857335 .t526__perstext {
+        font-size: 18px;
+        font-weight: 400;
+    }
+</style>
+<script>
+    t_onReady(function () {
+        t_onFuncLoad('t_social_init', function () {
+            t_social_init('170857335', 't-persons');
+        });
+    });
+</script>
+
+
+{% endblock %}
