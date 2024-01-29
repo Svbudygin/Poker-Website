@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<style>
+    .login-page-main {
+        padding: 50px 0;
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+
+    .login-box {
+        background-color: #f75e5e;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: left;
+        margin: 0 auto;
+        max-width: 500px; /* Новые стили для сужения контейнера */
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        background-color: #f75e5e;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #d64949;
+    }
+</style>
+<style>
+    /* Ваш стиль остается неизменным */
+    .t526__col {
+        /* ваш стиль */
+    }
+
+    /* Дополнительный стиль для формы изменения данных */
+    .change-form {
+        display: none;
+        margin-top: 20px;
+    }
+</style>
+<!-- Ваш существующий код остается здесь -->
+<div id="rec170857179" class="r t-rec t-rec_pt_60 t-rec_pb_15"
+
+     style="padding-top:60px;padding-bottom:15px; "
+     data-record-type="795">
+    <br>
+    <!-- T795 -->
+    <div class="t795">
+        <div class="t-container t-align_left">
+            <div class="t-col t-col_12 ">
+                <div class="t795__title t-title t-title_xs" field="title">
+                    <br/>
+                    Личный кабинет
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="login-page-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="login-box">
+                    <div class="t526__itemwrapper t526__itemwrapper_3">
+                        <div class="t526__imgwrapper " style="width:200px;" itemscope
+                             itemtype="http://schema.org/ImageObject">
+                            <meta itemprop="image" content="static/uploads/ivan.png">
+                            <div class="t526__bgimg t526__img_circle t-bgimg"
+                                 data-original="static/uploads/ivan.png" bgimgfield="li_img__1478015651388"
+                                 style="background-image: url('static/data/panda.svg');"></div>
+                        </div>
+                        <div class="t526__wrapperleft">
+                            <div class="t526__persname t-name t-name_lg t526__bottommargin_sm"
+                                 field="li_persname__1478015651388">{{info_about_user.get("fullname")}}
+                            </div>
+                        </div>
+
+                        <form id="changeForm" class="change-form" method="POST" action="{{url_for('lk')}}">
+                            <!-- Input для изменения имени -->
+                            <div>
+                                <label for="newName">Имя:</label>
+                                <input type="text" id="newName" name="newName"
+                                       value="{{info_about_user.get('fullname')}}" required>
+                            </div>
+
+                            <!-- Input для изменения почты -->
+<!--                            <div>-->
+<!--                                <label for="newEmail">Почта:</label>-->
+<!--                                <input type="email" id="newEmail" name="newEmail"-->
+<!--                                       value="{{info_about_user.get('email')}}" required>-->
+<!--                            </div>-->
+
+
+                            <!-- Input для изменения пароля -->
+                            <div>
+                                <label for="newPassword">Новый пароль: </label>
+                                <input type="password" id="newPassword" name="newPassword" required>
+                            </div>
+
+                            <div>
+                                <label for="confirmPassword">Подтверждение пароля: </label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                            </div>
+
+                            <div id="passwordError" style="display: none; color: red;"></div>
+                            <!-- Сообщение об ошибке по умолчанию скрыто -->
+
+                            <input type="submit" value="Сохранить изменения">
+                        </form>
+
+                        <button id="changeButton" onclick="toggleForm()">Изменить данные</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+ <br><br>
+            <br><br><br>
+            <br><br>
+            <br>
+            <br><br>
+            <br><br><br>
+            <br><br>
+            <br>
+            <br><br><br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <br><br>
+<script>
+    function toggleForm() {
+        var form = document.getElementById('changeForm');
+        if (form.style.display === 'none' || form.style.display === '') {
+            form.style.display = 'block';
+            document.getElementById('changeButton').innerText = 'Скрыть';
+        } else {
+            form.style.display = 'none';
+            document.getElementById('changeButton').innerText = 'Изменить данные';
+        }
+    }
+</script>
+<script>
+    // Получаем элементы input
+    var newPassword = document.getElementById('newPassword');
+    var confirmPassword = document.getElementById('confirmPassword');
+    var passwordError = document.getElementById('passwordError');
+
+    // Функция для проверки паролей
+    function checkPassword() {
+        if (newPassword.value !== confirmPassword.value) {
+            passwordError.innerHTML = 'Пароли не совпадают';
+            passwordError.style.display = 'block';
+        } else {
+            passwordError.style.display = 'none';
+        }
+    }
+
+    // Назначаем обработчик события на изменение значений полей ввода
+    newPassword.addEventListener('input', checkPassword);
+    confirmPassword.addEventListener('input', checkPassword);
+</script>
+
+
+{% endblock %}

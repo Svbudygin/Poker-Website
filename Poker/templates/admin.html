@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% block body %}
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<style>
+    body {
+        background-color: #f75e5e;
+        margin: 0;
+        padding: 0;
+    }
+
+    #rec170854082444 {
+        text-align: center;
+        margin: 0 auto; /* Центрирование по горизонтали */
+        max-width: 600px; /* Ширина контейнера */
+        /*background-color: #f75e5e; !* Цвет фона контейнера *!*/
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px; /* Отступ снизу */
+    }
+
+    #rec170854082 {
+        text-align: center;
+        margin: 0 auto; /* Центрирование по горизонтали */
+        max-width: 600px; /* Ширина контейнера */
+        /*background-color: #f75e5e; !* Цвет фона контейнера *!*/
+        padding: 0px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #f75e5e;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+</style>
+<div id="rec170854082444" class="r t-rec t-rec_pt_0 t-rec_pb_60"
+     style="padding-top:0px;padding-bottom:20px;background-color:#f75e5e; " data-record-type="491"
+     data-bg-color="#f75e5e">
+    <h1>Удаление встреч:</h1>
+    <br>
+    {% for game in games_all %}
+    <form id="brandForm2{{game[0]}}" method="GET" action="{{url_for('admin')}}">
+        <input type="hidden" name="delete" value="{{game[0]}}">
+
+        <button type="submit"
+                style="background-color: #2d4250; color: #f75e5e; font-weight: 600; border-radius: 20px; padding: 10px 20px; display: inline-block; text-align: center; text-decoration: none;">
+            event: {{game[1].replace('T', ' ')}}
+        </button>
+
+    </form>
+    {% endfor %}
+</div>
+
+<div id="rec170854082" class="r t-rec t-rec_pt_0 t-rec_pb_60"
+     style="padding-top:0px;padding-bottom:60px;background-color:#f75e5e; " data-record-type="491"
+     data-bg-color="#f75e5e">
+    <h1>Добавьте информацию о новой встрече:</h1>
+    <form action="{{url_for('admin')}}" method="post">
+        <label for="participants">Всего участников:</label>
+        <input type="number" id="participants" name="participants" placeholder="12" required><br>
+
+        <label for="buy_in">Бай-ин:</label>
+        <input type="number" id="buy_in" name="buy_in" placeholder="1000" required><br>
+
+        <label for="bb_sb">BB/SB:</label>
+        <input type="text" id="bb_sb" name="bb_sb" pattern="\d+/\d+" placeholder="10/5"
+               title="Введите число/число" required><br>
+
+        <label for="extra_fee">Доп плата за еду (пицца, закуска):</label>
+        <input type="number" id="extra_fee" name="extra_fee" placeholder="250" required><br>
+
+        <label for="extra_fee_alc">Доп плата за алкаголь:</label>
+        <input type="number" id="extra_fee_alc" name="extra_fee_alc" placeholder="300" required><br>
+
+        <label for="phone_number">Перевести на номер:</label>
+        <input type="tel" id="phone_number" name="phone_number" placeholder="+79672412932" required><br>
+
+        <label for="date">Дата:</label>
+        <input type="datetime-local" id="date" name="date" placeholder="22 янв 18:00" required><br>
+
+        <label for="location">Локация:</label>
+        <input type="text" id="location" name="location" placeholder="ул. Пушкина дом 5" required><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+
+{% endblock %}
