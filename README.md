@@ -17,21 +17,29 @@
 
 ## Site Appearance
 
-![Example Site Appearance](assets/mainpage1.png)
-![Example Site Appearance](assets/mainpage2.png)
-![Example Site Appearance](assets/mainpage3.png)
-![Example Site Appearance](assets/mainpage_admin.png)
-![Example Site Appearance](assets/change_game_admin.png)
-### Example Registration Page Appearance
+<div style="display: flex; justify-content: center; flex-wrap: wrap;">
+  <img src="assets/mainpage1.png" alt="Screenshot 0" width="350" style="margin: 20px;">
+    <img src="assets/mainpage2.png" alt="Screenshot 1" width="350" style="margin: 20px;">
+    <img src="assets/mainpage3.png" alt="Screenshot 2" width="350" style="margin: 20px;">
+  <img src="assets/tour.png" alt="Screenshot 2" width="350" style="margin: 20px;">
+</div>
 
-![Example Site Appearance](assets/members.png)
-![Example Site Appearance](assets/members_admin.png)
-### Example Administrator Page Appearance
+## Site Appearance for admin
 
-![Example Site Appearance](assets/participants.png)
-![Example Site Appearance](assets/participants_admin.png)
+<div style="display: flex; justify-content: center; flex-wrap: wrap;">
+    <img src="assets/mainpage_admin.png" alt="Screenshot 3" width="350" style="margin: 20px;">
+    <img src="assets/change_game_admin.png" alt="Screenshot 4" width="350" style="margin: 20px;">
+</div>
 
-### Example Administrator Page Appearance
+### Members Page Appearance
+<div style="display: flex; justify-content: center; flex-wrap: wrap;">
+    <img src="assets/members.png" alt="Screenshot 3" width="350" style="margin: 20px;">
+    <img src="assets/members_admin.png" alt="Screenshot 4" width="350" style="margin: 20px;">
+</div>
 
-![Example Site Appearance](assets/reg.png)
-![Example Site Appearance](assets/accountpage.png)
+### Registration and account Page Appearance
+<div style="display: flex; justify-content: center; flex-wrap: wrap;">
+    <img src="assets/reg.png" alt="Screenshot 3" width="350" style="margin: 20px;">
+    <img src="assets/accountpage.png" alt="Screenshot 4" width="350" style="margin: 20px;">
+</div>
+
