@@ -1,32 +1,28 @@
 # Poker
 
-## Описание функционала сайта
+## Description of Website Functionality
 
-### Регистрация и авторизация
-- Пользователи могут зарегистрироваться, подтвердив свою почту через отправку кода.
-- Авторизация доступна после успешной регистрации.
-- Администратор подтверждает аккаунты пользователей для доступа к играм.
+### Registration and Authentication
+- Users can register by verifying their email through a confirmation code.
+- Authentication is available after successful registration.
+- The administrator confirms user accounts for access to games.
 
-### Управление играми
-- Администратор может создавать, редактировать и удалять игры.
-- Изменение состава участников для каждой игры возможно.
+### Game Management
+- The administrator can create, edit, and delete games.
+- Changing the list of participants for each game is possible.
 
-### Регистрация на игры
-- Зарегистрированные пользователи могут регистрироваться на игры в режиме реального времени.
-- Отмена регистрации также доступна и отображается на сайте.
+### Registration for Games
+- Registered users can sign up for games in real-time.
+- Cancellation of registration is also available and displayed on the site.
 
-## Работа с репозиторием на GitHub
+## Example Site Appearance
 
-Для удобства ведения проекта, рекомендуется создать файл README.md в репозитории на GitHub. В этом файле можно описать основные функции сайта, структуру проекта, инструкции по установке и другую полезную информацию.
+![Example Site Appearance](assets/pok1.mp4)
 
-## Примерный вид сайта
+### Example Registration Page Appearance
 
-![Примерный вид сайта](assets/pok1.mp4)
+![Registration Page](image_link)
 
-### Примерный вид страницы регистрации
+### Example Administrator Page Appearance
 
-![Страница регистрации](ссылка_на_изображение)
-
-### Примерный вид страницы администратора
-
-![Страница администратора](ссылка_на_изображение)
+![Administrator Page](image_link)
