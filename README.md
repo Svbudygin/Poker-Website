@@ -2,26 +2,28 @@
 
 ## Description of Website Functionality
 
-### Registration and Authentication
-- Users can register by verifying their email through a confirmation code.
-- Authentication is available after successful registration.
-- The administrator confirms user accounts for access to games.
+### Live Game Registration and Participation
+- The website is not just a placeholder; it actively manages live game registrations.
+- Registration for games is already accessible as user data is stored in a database, ensuring real-time updates.
+- Users can easily sign up for games and manage their registrations within their account using session management for seamless user experience.
 
-### Game Management
-- The administrator can create, edit, and delete games.
-- Changing the list of participants for each game is possible.
+### Dynamic Game Management
+- The administrator has the ability to create, modify, and remove games on-the-fly.
+- Changes to the list of participants for each game are instantly reflected, providing up-to-date information for all users involved.
 
-### Registration for Games
-- Registered users can sign up for games in real-time.
-- Cancellation of registration is also available and displayed on the site.
-
+### Interactive User Experience
+- Accepted accounts can swiftly register for games and cancel their participation directly on the website.
+- All updates, including registration confirmations and cancellations, are promptly displayed, enhancing user engagement and interaction with the platform.
+### Secure Account Verification
+- Upon registration for a game, a unique verification code is sent to the user's email for account confirmation.
+- If the verification code is not entered within a specified time frame, the user's registration details will not be saved, ensuring data security and preventing unauthorized account creation.
 ## Site Appearance
 
 <div style="display: flex; justify-content: center; flex-wrap: wrap;">
   <img src="assets/mainpage1.png" alt="Screenshot 0" width="350" style="margin: 20px;">
     <img src="assets/mainpage2.png" alt="Screenshot 1" width="350" style="margin: 20px;">
     <img src="assets/mainpage3.png" alt="Screenshot 2" width="350" style="margin: 20px;">
-  <img src="assets/tour.png" alt="Screenshot 2" width="350" style="margin: 20px;">
+  <img src="assets/pic.png" alt="Screenshot 2" width="350" style="margin: 20px;">
 </div>
 
 ## Site Appearance for admin
