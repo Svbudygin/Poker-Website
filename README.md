@@ -15,14 +15,23 @@
 - Registered users can sign up for games in real-time.
 - Cancellation of registration is also available and displayed on the site.
 
-## Example Site Appearance
+## Site Appearance
 
-![Example Site Appearance](assets/pok1.mp4)
-
+![Example Site Appearance](assets/mainpage1.png)
+![Example Site Appearance](assets/mainpage2.png)
+![Example Site Appearance](assets/mainpage3.png)
+![Example Site Appearance](assets/mainpage_admin.png)
+![Example Site Appearance](assets/change_game_admin.png)
 ### Example Registration Page Appearance
 
-![Registration Page](image_link)
+![Example Site Appearance](assets/members.png)
+![Example Site Appearance](assets/members_admin.png)
+### Example Administrator Page Appearance
+
+![Example Site Appearance](assets/participants.png)
+![Example Site Appearance](assets/participants_admin.png)
 
 ### Example Administrator Page Appearance
 
-![Administrator Page](image_link)
+![Example Site Appearance](assets/sign_in.png)
+![Example Site Appearance](assets/accountpage.png)
