@@ -27,19 +27,20 @@
 </div>
 
 ## Site Appearance for admin
-
 <div style="display: flex; justify-content: center; flex-wrap: wrap;">
     <img src="assets/mainpage_admin.png" alt="Screenshot 3" width="350" style="margin: 20px;">
     <img src="assets/change_game_admin.png" alt="Screenshot 4" width="350" style="margin: 20px;">
 </div>
 
 ### Members Page Appearance
+
 <div style="display: flex; justify-content: center; flex-wrap: wrap;">
     <img src="assets/members.png" alt="Screenshot 3" width="350" style="margin: 20px;">
     <img src="assets/members_admin.png" alt="Screenshot 4" width="350" style="margin: 20px;">
 </div>
 
 ### Registration and account Page Appearance
+
 <div style="display: flex; justify-content: center; flex-wrap: wrap;">
     <img src="assets/reg.png" alt="Screenshot 3" width="350" style="margin: 20px;">
     <img src="assets/accountpage.png" alt="Screenshot 4" width="350" style="margin: 20px;">
