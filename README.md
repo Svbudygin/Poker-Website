@@ -33,5 +33,5 @@
 
 ### Example Administrator Page Appearance
 
-![Example Site Appearance](assets/sign_in.png)
+![Example Site Appearance](assets/reg.png)
 ![Example Site Appearance](assets/accountpage.png)
